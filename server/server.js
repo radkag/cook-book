@@ -18,7 +18,7 @@ app.get("/recipes", (req, res) => {
             res.status(400).send(err);
         }
 
-        res.send({recipes})
+        res.send(recipes)
     });
 });
 
