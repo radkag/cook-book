@@ -39,7 +39,7 @@ app.post("/recipe", (req, res) => {
     });
 });
 
-app.patch("/recipes/:id", (req, res) => {
+app.patch("/recipe/:id", (req, res) => {
     const id = req.params.id;
     const updatedRecipe = _.pick(req.body, ["title", "recipe", "hearts"]);
 

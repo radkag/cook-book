@@ -1,28 +1,28 @@
 import {
-    FETCH_POSTS_SUCCESS,
-    EDIT_POST_SUCCESS,
-    CREATE_POST_SUCCESS
+  FETCH_POSTS_SUCCESS,
+  EDIT_POST_SUCCESS,
+  CREATE_POST_SUCCESS
 } from '../actions/recipes';
 
 export default (state = {}, action) => {
-    const { type, payload } = action;
+  const { type, payload } = action;
 
-    switch (type) {
-        case FETCH_POSTS_SUCCESS: {
-            return payload;
-        }
+  switch (type) {
+    case FETCH_POSTS_SUCCESS: {
+      return payload;
+    }
 
-        case EDIT_POST_SUCCESS: {
-            return payload;
-        }
+    // case EDIT_POST_SUCCESS: {
+    //     return payload;
+    // }
+    //
+    // case CREATE_POST_SUCCESS: {
+    //     return payload;
+    // }
 
-        case CREATE_POST_SUCCESS: {
-            return payload;
-        }
-
-        default: {
-            return state;
-        }
+    default: {
+      return state;
+    }
   }
 };
 //

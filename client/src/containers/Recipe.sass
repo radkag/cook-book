@@ -1,2 +1,8 @@
 .recipe
-  color: blue
+  &__wrapper
+    @include recipe-box()
+    &--new
+      @include recipe-box()
+      &:hover
+        background-color: #f7f7f7
+
