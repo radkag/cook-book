@@ -3,6 +3,9 @@
 # dependencies
 node_modules
 
+# compiled css
+/src/styles/css
+
 # testing
 coverage
 
@@ -12,4 +15,4 @@ build
 # misc
 .DS_Store
 .env
-npm-debug.log
+yarn-error.log
