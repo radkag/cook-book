@@ -14,7 +14,16 @@
     height: 120px
     background-size: 330px
   &__title
-    padding: 0 40px
+    display: inline-block
+    padding: 0 15px 0 40px
+    margin-bottom: 0
+  &__edit-button
+    display: inline-block
+    font-size: 10px
+    color: #2e3031
+    &:hover
+      text-decoration: underline
+      cursor: pointer
   &__tutorial
     padding: 0 40px 20px 40px
     height: 200px
@@ -37,3 +46,22 @@
   &__thumbs-number
     display: inline-block
     margin-right: 15px
+  &__form
+    height: 273px
+    border-bottom: 1px solid $color-light-grey
+  &__edit-input
+    display: inline-block
+    width: 130px
+    @include edit-input()
+    font-weight: 400
+    margin: 20px 20px 20px 40px
+    font-size: 24px
+  &__edit-textarea
+    display: inline-block
+    width: 250px
+    @include edit-input()
+    font-weight: 300
+    margin: 0 40px
+    font-family: Lato
+    font-weight: 300
+    height: 175px

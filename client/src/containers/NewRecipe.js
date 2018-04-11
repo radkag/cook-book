@@ -11,7 +11,7 @@ class Recipe extends React.Component {
       isFormDisplayed: false,
       currentRecipe: {
         title: '',
-        subtitle: ''
+        recipe: ''
       }
     };
   }
@@ -47,9 +47,8 @@ class Recipe extends React.Component {
           <label className="recipe__label">Recipe</label>
           <textarea
             className="recipe__textarea"
-            value={this.state.subtitle}
+            value={this.state.recipe}
             onChange={e => this.handleInputUpdate('recipe', e.target.value)}
-            rows="3"
           />
         </form>
         <button className="recipe__button" onClick={this.handleCreate}>

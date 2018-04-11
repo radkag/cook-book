@@ -8,12 +8,24 @@ class Recipe extends React.Component {
     super(props);
 
     this.state = {
+      switchToEditRecipeMode: false,
       currentRecipe: {
         title: this.props.title,
-        subtitle: this.props.recipe
+        recipe: this.props.recipe
       }
     };
   }
+
+  handleInputUpdate = (name, value) => {
+    const currentRecipe = { ...this.state.currentRecipe, [name]: value };
+    this.setState({ currentRecipe });
+  };
+
+  handleEdit = async () => {
+    await this.props.editRecipe(this.props._id, this.state.currentRecipe);
+    await this.props.fetchRecipes();
+    this.setState({ switchToEditRecipeMode: false });
+  };
 
   handleAddLike = async () => {
     await this.props.editRecipe(this.props._id, {
@@ -29,14 +41,51 @@ class Recipe extends React.Component {
     await this.props.fetchRecipes();
   };
 
+  editPostMode = () => {
+    this.setState({ switchToEditRecipeMode: true });
+  };
+
   render() {
     const { title, recipe, likes, dislikes } = this.props;
+
+    const presenterRecipeMode = (
+      <React.Fragment>
+        <h2 className="recipe__title">{title}</h2>
+        <p className="recipe__edit-button" onClick={this.editPostMode}>
+          Edit post
+        </p>
+        <p className="recipe__tutorial">{recipe}</p>
+      </React.Fragment>
+    );
+
+    const editRecipeMode = (
+      <React.Fragment>
+        <form className="recipe__form">
+          <input
+            className="recipe__edit-input"
+            value={this.state.currentRecipe.title}
+            placeholder="Title"
+            onChange={e => this.handleInputUpdate('title', e.target.value)}
+          />
+          <p className="recipe__edit-button" onClick={this.handleEdit}>
+            Update
+          </p>
+          <textarea
+            className="recipe__edit-textarea"
+            value={this.state.currentRecipe.recipe}
+            placeholder=""
+            onChange={e => this.handleInputUpdate('recipe', e.target.value)}
+          />
+        </form>
+      </React.Fragment>
+    );
 
     return (
       <div className="recipe__wrapper">
         <div className="recipe__image" />
-        <h2 className="recipe__title">{title}</h2>
-        <p className="recipe__tutorial">{recipe}</p>
+        {this.state.switchToEditRecipeMode
+          ? editRecipeMode
+          : presenterRecipeMode}
         <div className="recipe__thumbs-wrapper">
           <div className="recipe__thumb-icons-wrapper">
             <div className="recipe__thumb-up" onClick={this.handleAddLike} />
