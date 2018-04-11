@@ -1,6 +1,31 @@
 .recipe
   &__icon-add
+    position: absolute
     background-image: url("//d3lph2spgmr3pz.cloudfront.net/individual-health-quotes/add.1523387904.svg")
     width: 60px
     height: 60px
+    cursor: pointer
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+  &__add-new-title
+    font-size: 20px
+  &__input
+    @include input()
+  &__textarea
+      @include input()
+      height: 175px
+  &__label
+    display: block
+    margin-bottom: 3px
+    font-size: 14px
+    font-weight: 400
+  &__button
+    display: block
+    background: $gradient-grey-black
+    color: $color-white
+    width: 100%
+    padding: 13px
+    border-radius: 3px
+    box-shadow: 0 0 10px 0 rgba(176, 186, 197, 0.33)
     cursor: pointer

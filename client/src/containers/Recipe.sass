@@ -2,7 +2,38 @@
   &__wrapper
     @include recipe-box()
     &--new
+      padding: 20px 40px
       @include recipe-box()
+      display: flex
+      flex-direction: column
+      justify-content: space-between
       &:hover
-        background-color: #f7f7f7
-
+        background-color: $color-grey-white
+  &__image
+    background-image: url("//d3lph2spgmr3pz.cloudfront.net/individual-health-quotes/recipe-photo.1523441289.jpg")
+    height: 120px
+    background-size: 330px
+  &__title
+    padding: 0 40px
+  &__tutorial
+    padding: 0 40px 20px 40px
+    height: 200px
+    border-bottom: 1px solid $color-light-grey
+  &__thumb-icons-wrapper
+    position: absolute
+    bottom: 0
+  &__thumbs-wrapper
+    height: 35px
+  &__thumb-up
+    @include thumb-icon()
+    background-image: url("//d3lph2spgmr3pz.cloudfront.net/individual-health-quotes/thumbs-up.1523442165.svg")
+    margin-left: 40px
+    margin-right: 5px
+  &__thumb-down
+    @include thumb-icon()
+    background-image: url("//d3lph2spgmr3pz.cloudfront.net/individual-health-quotes/thumbs-up.1523441955.svg")
+    margin-bottom: -4px
+    margin-right: 5px
+  &__thumbs-number
+    display: inline-block
+    margin-right: 15px

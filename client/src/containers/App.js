@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <div className="cookbook">
         <header className="cookbook__header">
-          <h1 className="cookbook__headline">Kuchařka</h1>
+          <h1 className="cookbook__headline">Cookbook</h1>
         </header>
         <div className="cookbook__recipes">
           {this.props.recipes.map(recipeData => (
@@ -26,6 +26,7 @@ class App extends React.Component {
           ))}
           <NewRecipe />
         </div>
+        <footer className="cookbook__footer" />
       </div>
     );
   }

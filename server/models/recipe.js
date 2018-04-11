@@ -9,9 +9,13 @@ const recipeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    hearts: {
+    likes: {
         type: String,
         default: 0
+    },
+    dislikes: {
+      type: String,
+      default: 0
     }
 });
 

@@ -8,7 +8,7 @@ export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
 export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS';
 
 axios.create({
-  headers: {"Content-Type": "application/json"},
+  headers: { 'Content-Type': 'application/json' },
   proxy: {
     host: '127.0.0.1',
     port: 5000
@@ -24,19 +24,19 @@ export const fetchRecipes = () => {
           type: FETCH_POSTS_SUCCESS,
           payload: res.data
         });
-        })
+      })
       .catch(() => {
         dispatch({
           type: FETCH_POSTS_FAILURE
         });
       });
-    };
+  };
 };
 
-export const createRecipe = (data) => {
+export const createRecipe = data => {
   return dispatch => {
     axios
-      .post("/recipe", data)
+      .post('/recipe', data)
       .then(res => {
         dispatch({
           type: CREATE_POST_SUCCESS,
@@ -51,19 +51,20 @@ export const createRecipe = (data) => {
   };
 };
 
-export const editRecipe = data => {
+export const editRecipe = (id, data) => {
   return dispatch => {
     axios
-      .patch(`/recipe/${data.id}`)
+      .patch(`/recipe/${id}`, data)
       .then(res => {
         dispatch({
           type: EDIT_POST_SUCCESS,
           payload: res.data
         });
-      }).catch(() => {
+      })
+      .catch(() => {
         dispatch({
           type: EDIT_POST_FAILURE
         });
       });
-    };
+  };
 };

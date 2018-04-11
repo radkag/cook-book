@@ -34,20 +34,27 @@ class Recipe extends React.Component {
   render() {
     const form = (
       <React.Fragment>
-        <div className="recipe__image--new" />
-        <label>Title</label>
-        <input
-          className="recipe__input"
-          value={this.state.title}
-          onChange={e => this.handleInputUpdate('title', e.target.value)}
-        />
-        <label>Recipe</label>
-        <input
-          className="recipe__input--large"
-          value={this.state.subtitle}
-          onChange={e => this.handleInputUpdate('recipe', e.target.value)}
-        />
-        <button onClick={this.handleCreate}>Submit</button>
+        <h1 className="recipe__add-new-title">
+          Enrich your cookbook with new recipe
+        </h1>
+        <form className="recipe__form">
+          <label className="recipe__label">Title</label>
+          <input
+            className="recipe__input"
+            value={this.state.title}
+            onChange={e => this.handleInputUpdate('title', e.target.value)}
+          />
+          <label className="recipe__label">Recipe</label>
+          <textarea
+            className="recipe__textarea"
+            value={this.state.subtitle}
+            onChange={e => this.handleInputUpdate('recipe', e.target.value)}
+            rows="3"
+          />
+        </form>
+        <button className="recipe__button" onClick={this.handleCreate}>
+          Submit
+        </button>
       </React.Fragment>
     );
 
