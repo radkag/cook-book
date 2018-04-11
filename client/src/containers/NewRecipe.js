@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createRecipe, fetchRecipes } from '../actions/recipes';
+import { regexValidator } from '../comon/formValidation';
 
 class Recipe extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Recipe extends React.Component {
 
     this.state = {
       isFormDisplayed: false,
+      errorMessage: '',
       currentRecipe: {
         title: '',
         recipe: ''
@@ -19,6 +21,15 @@ class Recipe extends React.Component {
   handleInputUpdate = (name, value) => {
     const currentRecipe = { ...this.state.currentRecipe, [name]: value };
     this.setState({ currentRecipe });
+
+    const isValid = regexValidator(value);
+    if (!isValid) {
+      this.setState({
+        errorMessage: `Please add only valid characters for ${name} field`
+      });
+    } else {
+      this.setState({ errorMessage: '' });
+    }
   };
 
   handleCreate = async () => {
@@ -51,7 +62,10 @@ class Recipe extends React.Component {
             onChange={e => this.handleInputUpdate('recipe', e.target.value)}
           />
         </form>
-        <button className="recipe__button" onClick={this.handleCreate}>
+        <p className="recipe__error-message">{this.state.errorMessage}</p>
+        <button
+          className="recipe__button"
+          onClick={this.state.errorMessage === '' && this.handleCreate}>
           Submit
         </button>
       </React.Fragment>

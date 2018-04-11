@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editRecipe, fetchRecipes } from '../actions/recipes';
+import { regexValidator } from '../comon/formValidation';
 
 class Recipe extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Recipe extends React.Component {
 
     this.state = {
       switchToEditRecipeMode: false,
+      errorMessage: '',
       currentRecipe: {
         title: this.props.title,
         recipe: this.props.recipe
@@ -19,6 +21,15 @@ class Recipe extends React.Component {
   handleInputUpdate = (name, value) => {
     const currentRecipe = { ...this.state.currentRecipe, [name]: value };
     this.setState({ currentRecipe });
+
+    const isValid = regexValidator(value);
+    if (!isValid) {
+      this.setState({
+        errorMessage: `Please add only valid characters for ${name} field`
+      });
+    } else {
+      this.setState({ errorMessage: '' });
+    }
   };
 
   handleEdit = async () => {
@@ -49,35 +60,36 @@ class Recipe extends React.Component {
     const { title, recipe, likes, dislikes } = this.props;
 
     const presenterRecipeMode = (
-      <React.Fragment>
+      <div className="recipe__content-wrapper">
         <h2 className="recipe__title">{title}</h2>
         <p className="recipe__edit-button" onClick={this.editPostMode}>
           Edit post
         </p>
         <p className="recipe__tutorial">{recipe}</p>
-      </React.Fragment>
+      </div>
     );
 
     const editRecipeMode = (
-      <React.Fragment>
-        <form className="recipe__form">
-          <input
-            className="recipe__edit-input"
-            value={this.state.currentRecipe.title}
-            placeholder="Title"
-            onChange={e => this.handleInputUpdate('title', e.target.value)}
-          />
-          <p className="recipe__edit-button" onClick={this.handleEdit}>
-            Update
-          </p>
-          <textarea
-            className="recipe__edit-textarea"
-            value={this.state.currentRecipe.recipe}
-            placeholder=""
-            onChange={e => this.handleInputUpdate('recipe', e.target.value)}
-          />
-        </form>
-      </React.Fragment>
+      <form className="recipe__form">
+        <input
+          className="recipe__edit-input"
+          value={this.state.currentRecipe.title}
+          placeholder="Title"
+          onChange={e => this.handleInputUpdate('title', e.target.value)}
+        />
+        <p
+          className="recipe__edit-button"
+          onClick={this.state.errorMessage === '' && this.handleEdit}>
+          Update
+        </p>
+        <textarea
+          className="recipe__edit-textarea"
+          value={this.state.currentRecipe.recipe}
+          placeholder=""
+          onChange={e => this.handleInputUpdate('recipe', e.target.value)}
+        />
+        <p className="recipe__error-message">{this.state.errorMessage}</p>
+      </form>
     );
 
     return (

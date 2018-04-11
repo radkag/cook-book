@@ -8,7 +8,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 export const history = createHistory();
 
 const initialState = {
-  recipes: []
+  recipes: [],
+  serverError: ''
 };
 
 const enhancers = [];
