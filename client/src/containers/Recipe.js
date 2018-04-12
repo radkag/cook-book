@@ -18,6 +18,13 @@ class Recipe extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.editedRecipe) {
+      this.props.fetchRecipes();
+      this.setState({ switchToEditRecipeMode: false });
+    }
+  }
+
   handleInputUpdate = (name, value) => {
     const currentRecipe = { ...this.state.currentRecipe, [name]: value };
     this.setState({ currentRecipe });
@@ -32,10 +39,8 @@ class Recipe extends React.Component {
     }
   };
 
-  handleEdit = async () => {
-    await this.props.editRecipe(this.props._id, this.state.currentRecipe);
-    await this.props.fetchRecipes();
-    this.setState({ switchToEditRecipeMode: false });
+  handleEdit = () => {
+    this.props.editRecipe(this.props._id, this.state.currentRecipe);
   };
 
   handleAddLike = async () => {
@@ -123,10 +128,11 @@ Recipe.propTypes = {
   likes: propTypes.string.isRequired,
   dislikes: propTypes.string.isRequired,
   editRecipe: propTypes.func.isRequired,
-  fetchRecipes: propTypes.func.isRequired
+  fetchRecipes: propTypes.func.isRequired,
+  editedRecipe: propTypes.object
 };
 
-export default connect(({ recipes }) => ({ recipes }), {
+export default connect(({ editedRecipe }) => ({ editedRecipe }), {
   editRecipe,
   fetchRecipes
 })(Recipe);

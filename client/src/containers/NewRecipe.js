@@ -18,6 +18,13 @@ class Recipe extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.createdRecipe) {
+      this.props.fetchRecipes();
+      this.setState({ isFormDisplayed: false });
+    }
+  }
+
   handleInputUpdate = (name, value) => {
     const currentRecipe = { ...this.state.currentRecipe, [name]: value };
     this.setState({ currentRecipe });
@@ -32,10 +39,8 @@ class Recipe extends React.Component {
     }
   };
 
-  handleCreate = async () => {
-    this.setState({ isFormDisplayed: false });
-    await this.props.createRecipe(this.state.currentRecipe);
-    await this.props.fetchRecipes();
+  handleCreate = () => {
+    this.props.createRecipe(this.state.currentRecipe);
   };
 
   toggleForm = () => {
@@ -85,10 +90,11 @@ class Recipe extends React.Component {
 
 Recipe.propTypes = {
   createRecipe: propTypes.func.isRequired,
-  fetchRecipes: propTypes.func.isRequired
+  fetchRecipes: propTypes.func.isRequired,
+  createdRecipe: propTypes.object
 };
 
-export default connect(({ recipes }) => ({ recipes }), {
+export default connect(({ createdRecipe }) => ({ createdRecipe }), {
   createRecipe,
   fetchRecipes
 })(Recipe);

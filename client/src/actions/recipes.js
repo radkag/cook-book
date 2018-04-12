@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
-export const CREATE_POST_FAILURE = 'CREATE_POST_FAILURE';
-export const EDIT_POST_FAILURE = 'EDIT_POST_FAILURE';
-export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
-export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS';
+export const FETCH_RECIPES_SUCCESS = 'FETCH_RECIPES_SUCCESS';
+export const FETCH_RECIPES_FAILURE = 'FETCH_RECIPES_FAILURE';
+export const CREATE_RECIPE_FAILURE = 'CREATE_RECIPE_FAILURE';
+export const EDIT_RECIPE_FAILURE = 'EDIT_RECIPE_FAILURE';
+export const EDIT_RECIPE_SUCCESS = 'EDIT_RECIPE_SUCCESS';
+export const CREATE_RECIPE_SUCCESS = 'CREATE_RECIPE_SUCCESS';
 
 axios.create({
   headers: { 'Content-Type': 'application/json' },
@@ -21,13 +21,13 @@ export const fetchRecipes = () => {
       .get('/recipes')
       .then(res => {
         dispatch({
-          type: FETCH_POSTS_SUCCESS,
+          type: FETCH_RECIPES_SUCCESS,
           payload: res.data
         });
       })
       .catch(() => {
         dispatch({
-          type: FETCH_POSTS_FAILURE
+          type: FETCH_RECIPES_FAILURE
         });
       });
   };
@@ -39,13 +39,13 @@ export const createRecipe = data => {
       .post('/recipe', data)
       .then(res => {
         dispatch({
-          type: CREATE_POST_SUCCESS,
+          type: CREATE_RECIPE_SUCCESS,
           payload: res.data
         });
       })
       .catch(() => {
         dispatch({
-          type: CREATE_POST_FAILURE
+          type: CREATE_RECIPE_FAILURE
         });
       });
   };
@@ -57,13 +57,13 @@ export const editRecipe = (id, data) => {
       .patch(`/recipe/${id}`, data)
       .then(res => {
         dispatch({
-          type: EDIT_POST_SUCCESS,
+          type: EDIT_RECIPE_SUCCESS,
           payload: res.data
         });
       })
       .catch(() => {
         dispatch({
-          type: EDIT_POST_FAILURE
+          type: EDIT_RECIPE_FAILURE
         });
       });
   };

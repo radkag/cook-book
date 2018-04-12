@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import recipes from './reducer_recipes';
+import recipesFetch from './reducer_recipes-fetch';
+import editedRecipe from './reducer_recipe-edit';
+import createdRecipe from './reducer_recipe-post';
 import serverError from './reducer_failures';
 
 export default combineReducers({
-  recipes,
+  recipes: recipesFetch,
+  editedRecipe,
+  createdRecipe,
   serverError
 });

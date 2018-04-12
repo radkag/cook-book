@@ -1,22 +1,22 @@
 import {
-  FETCH_POSTS_FAILURE,
-  CREATE_POST_FAILURE,
-  EDIT_POST_FAILURE
+  FETCH_RECIPES_FAILURE,
+  CREATE_RECIPE_FAILURE,
+  EDIT_RECIPE_FAILURE
 } from '../actions/recipes';
 
 export default (state = {}, action) => {
   const { type } = action;
 
   switch (type) {
-    case FETCH_POSTS_FAILURE: {
+    case FETCH_RECIPES_FAILURE: {
       return 'Fetch failed, some problem with server occured.';
     }
 
-    case CREATE_POST_FAILURE: {
+    case CREATE_RECIPE_FAILURE: {
       return 'Creating recipe failed, some problem with server occured.';
     }
 
-    case EDIT_POST_FAILURE: {
+    case EDIT_RECIPE_FAILURE: {
       return 'Editing post failed, some problem with server occured.';
     }
 
