@@ -65,7 +65,7 @@ class Recipe extends React.Component {
         <p className="recipe__error-message">{this.state.errorMessage}</p>
         <button
           className="recipe__button"
-          onClick={this.state.errorMessage === '' && this.handleCreate}>
+          onClick={this.state.errorMessage === '' ? this.handleCreate : null}>
           Submit
         </button>
       </React.Fragment>

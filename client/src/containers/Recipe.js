@@ -79,7 +79,7 @@ class Recipe extends React.Component {
         />
         <p
           className="recipe__edit-button"
-          onClick={this.state.errorMessage === '' && this.handleEdit}>
+          onClick={this.state.errorMessage === '' ? this.handleEdit : null}>
           Update
         </p>
         <textarea
