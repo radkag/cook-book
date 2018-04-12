@@ -6,10 +6,6 @@ import Recipe from './Recipe';
 import NewRecipe from './NewRecipe';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.fetchRecipes();
   }
@@ -21,7 +17,7 @@ class App extends React.Component {
           <h1 className="cookbook__headline">Cookbook</h1>
         </header>
         <p className="cookbook__server-error">{this.props.serverError}</p>
-        <div className="cookbook__recipes">
+        <div className="cookbook__recipes animated bounce">
           {this.props.recipes.map(recipeData => (
             <Recipe {...recipeData} key={recipeData._id} />
           ))}
