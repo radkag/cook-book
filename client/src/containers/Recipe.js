@@ -90,7 +90,7 @@ class Recipe extends React.Component {
         <textarea
           className="recipe__edit-textarea"
           value={this.state.currentRecipe.recipe}
-          placeholder=""
+          placeholder="Recipe"
           onChange={e => this.handleInputUpdate('recipe', e.target.value)}
         />
         <p className="recipe__error-message">{this.state.errorMessage}</p>
@@ -98,7 +98,7 @@ class Recipe extends React.Component {
     );
 
     return (
-      <div className="recipe__wrapper">
+      <div className="recipe__wrapper animated pulse">
         <div className="recipe__image" />
         {this.state.switchToEditRecipeMode
           ? editRecipeMode

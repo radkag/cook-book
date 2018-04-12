@@ -53,7 +53,7 @@ class Recipe extends React.Component {
         <h1 className="recipe__add-new-title">
           Enrich your cookbook with new recipe
         </h1>
-        <form className="recipe__form">
+        <form>
           <label className="recipe__label">Title</label>
           <input
             className="recipe__input"
@@ -81,7 +81,7 @@ class Recipe extends React.Component {
     );
 
     return (
-      <div className="recipe__wrapper--new">
+      <div className="recipe__wrapper--new animated fadeIn">
         {this.state.isFormDisplayed ? form : iconAdd}
       </div>
     );

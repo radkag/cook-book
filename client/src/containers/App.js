@@ -1,12 +1,13 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { fetchRecipes } from '../actions/recipes';
 import Recipe from './Recipe';
 import NewRecipe from './NewRecipe';
 
 class App extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchRecipes();
   }
 
@@ -17,11 +18,15 @@ class App extends React.Component {
           <h1 className="cookbook__headline">Cookbook</h1>
         </header>
         <p className="cookbook__server-error">{this.props.serverError}</p>
-        <div className="cookbook__recipes animated bounce">
+        <div className="cookbook__recipes">
           {this.props.recipes.map(recipeData => (
             <Recipe {...recipeData} key={recipeData._id} />
           ))}
-          <NewRecipe />
+          {_.isEmpty(this.props.recipes) && !this.props.serverError ? (
+            <div>Loading...</div>
+          ) : (
+            <NewRecipe />
+          )}
         </div>
         <footer className="cookbook__footer" />
       </div>

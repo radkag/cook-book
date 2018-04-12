@@ -2,6 +2,7 @@
   &__wrapper
     @include recipe-box()
     &--new
+      height: 443px
       padding: 20px 40px
       @include recipe-box()
       display: flex
@@ -28,7 +29,9 @@
       text-decoration: underline
       cursor: pointer
   &__tutorial
+    height: 180px
     padding: 0 40px 20px 40px
+    overflow-y: scroll
 
   &__thumb-icons-wrapper
     position: absolute
