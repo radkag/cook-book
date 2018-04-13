@@ -20,6 +20,11 @@ cd ../server
 yarn install
 ```
 
+Import initial data to your database from `/server` directory:
+```
+yarn init-seed
+```
+
 Start DB in docker from `/server` directory:
 ```
 docker-compose up
